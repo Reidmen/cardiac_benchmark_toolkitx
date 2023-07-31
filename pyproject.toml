@@ -15,6 +15,7 @@ dependencies = [
     "numpy",
     "scipy",
     "meshio",
+    "mpi4py",
     "importlib-metadata"
 ]
 
