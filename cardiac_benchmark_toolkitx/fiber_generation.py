@@ -291,6 +291,10 @@ def save_fibers_to_files(fibers: FiberDirections, path_to_save: str) -> None:
     if MPI.COMM_WORLD.Get_rank() == 0:
         path.mkdir(parents=True, exist_ok=True)
 
+    # binaries for parallel use
+    path_bin = path.joinpath("bin_format")
+    path_bin.mkdir(exist_ok=True, parents=True)
+
     MPI.COMM_WORLD.barrier()
 
     directions = [fibers.fiber, fibers.sheet, fibers.sheet_normal]
@@ -299,9 +303,9 @@ def save_fibers_to_files(fibers: FiberDirections, path_to_save: str) -> None:
     for name, direction in zip(names, directions):
         path_to_xdmf = path.joinpath(f"xdmf_format/ellipsoid_{name}.xdmf")
         path_to_vtx = path.joinpath(f"vtx_format/ellipsoid_{name}.bp")
-        # path_to_binaries = path.joinpath(
-        #     f"bin_format/ellipsoid_{mesh.comm.size}_{mesh.comm.rank}.dat"
-        # )
+        path_to_binaries = path_bin.joinpath(
+            f"ellipsoid_{name}_np{mesh.comm.size}_{mesh.comm.rank}.dat"
+        )
 
         with io.XDMFFile(mesh.comm, str(path_to_xdmf), "w") as xdmf:
             xdmf.write_mesh(mesh)
@@ -310,9 +314,9 @@ def save_fibers_to_files(fibers: FiberDirections, path_to_save: str) -> None:
         with io.VTXWriter(mesh.comm, str(path_to_vtx), [direction]) as vtx:
             vtx.write(0.0)
 
-        # pbio = PetscBinaryIO.PetscBinaryIO()
-        # file_view = direction.vector.array_w.view(PetscBinaryIO.Vec)
-        # pbio.writeBinaryFile(str(path_to_binaries), [file_view])
+        pbio = PetscBinaryIO.PetscBinaryIO()
+        file_view = direction.vector.array_w.view(PetscBinaryIO.Vec)
+        pbio.writeBinaryFile(str(path_to_binaries), [file_view])
 
         print(
             f"wrote {name} in path {str(path_to_xdmf)} and {str(path_to_vtx)}"
