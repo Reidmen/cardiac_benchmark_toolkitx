@@ -26,14 +26,13 @@ export PYTHONPATH=$PYTHONPATH:/usr/local/petsc/lib/petsc/bin/
 Given your tagged mesh located in `./meshes/ellipsoid.xdmf`, you can create the fibers as follows:
 
 ```shell
-cardiac_benchmark_toolkitx/ellipsoid_fiber_generation.py ./meshes/ellipsoid.xdmf
+cardiac_benchmark_toolkitx/fiber_generation.py ./meshes/ellipsoid.xdmf
 ```
 
-If succesfull, the script will create fibers in `xdmf` and `vtk` files in a `./results/` folder.
+If succesfull, the script will create fibers in `xdmf`, `vtk` and `PETSc binaries` files in a `./results/` folder.
 
 Further options can be found with:
 
 ```shell
 cardiac_benchmark_toolkitx/ellipsoid_fiber_generation.py --help
 ```
-
