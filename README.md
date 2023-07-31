@@ -1,15 +1,14 @@
 # Cardiac Benchmark Toolkit
 
 This repository contains minimal set of scripts that allow you to reproduce the mesh
-as well as the fibers in the cardiac mechanics benchmark using dolfinx.
+as well as the fibers in the cardiac mechanics benchmark using [dolfinx](https://github.com/FEniCS/dolfinx).
 
 ## Installation
 
-*Docker*
-Run the following command to start a container with all the required dependencies:
+**Docker** (Recommended) Run the following command to start a container with all the required dependencies:
 
 ```shell
-docker run --name dolfinx-stable -v $(pwd):/home/shared -w /home/shared -ti ghcr.io/fenics/dolfinx:nightly
+docker run --name dolfinx-stable -v $(pwd):/home/shared -w /home/shared -ti reidmen/dolfinx-nightly:e561c6c
 ```
 
 In order to enter the shell, use:
@@ -19,6 +18,11 @@ docker exec -ti dolfin-stable /bin/bash -l
 ```
 
 ## Quickstart
+This file requires `PetscBinaryIO`, the module can be loaded using:
+```shell
+export PYTHONPATH=$PYTHONPATH:/usr/local/petsc/lib/petsc/bin/
+```
+
 Given your tagged mesh located in `./meshes/ellipsoid.xdmf`, you can create the fibers as follows:
 
 ```shell
