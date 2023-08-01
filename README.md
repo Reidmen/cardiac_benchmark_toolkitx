@@ -8,8 +8,10 @@ as well as the fibers in the cardiac mechanics benchmark using [dolfinx](https:/
 **Docker** (Recommended) Run the following command to start a container with all the required dependencies:
 
 ```shell
-docker run --name dolfinx-stable -v $(pwd):/home/shared -w /home/shared -ti reidmen/dolfinx-nightly:e561c6c
+docker run --name dolfinx-stable -v $(pwd):/home/shared -w /home/shared -ti reidmen/dolfinx-nightly:91f01fd
 ```
+
+*The image `reidmen/dolfinx-nightly:91f01fd` is a frozen image from the `doflinx:nightly`*
 
 In order to enter the shell, use:
 
