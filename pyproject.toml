@@ -14,7 +14,6 @@ requires-python = ">=3.10"
 dependencies = [
     "numpy",
     "scipy",
-    "meshio",
     "mpi4py",
     "importlib-metadata"
 ]

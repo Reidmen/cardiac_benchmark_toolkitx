@@ -4,6 +4,9 @@ FROM ghcr.io/fenics/dolfinx:nightly
 # We set the working directory to install docker dependencies
 WORKDIR /cardiac_benchmark_toolkitx
 
+# Dependencies
+RUN python3 -m pip install --no-binary=h5py h5py meshio
+
 # Install the Python-module
 COPY . /cardiac_benchmark_toolkitx
 RUN chmod +x .
