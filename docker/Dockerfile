@@ -14,4 +14,4 @@ RUN python3 -m pip install --no-cache-dir .
 RUN export PYTHONPATH=$PYTHONPATH:/usr/local/petsc/lib/petsc/bin/
 
 ENV SHELL /bin/bash
-ENTRYPOINT ["python3", "cardiac_benchmark_toolkitx/fiber_generation.py", "./meshes/ellipsoid0.005.xdmf"]
+ENTRYPOINT ["python3", "cardiac_benchmark_toolkitx/fiber_generation.py", "./meshes/ellipsoid_0.005.xdmf"]
