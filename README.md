@@ -5,8 +5,8 @@ as well as the fibers in the cardiac mechanics benchmark using [dolfinx](https:/
 
 ## Installation
 
-This library requires `FEniCS (dolfinx)` already installed in your system.
-If `dolfinx` is not installed in your system, use **Docker** with the provided image in folder `docker`.
+This library requires `FEniCS` already installed in your system.
+If `dolfinx` is not installed in your system, use **Docker** with the image in folder `docker`.
 
 ### Using Pip
 Execute the following command in your local session, it will install the required dependencies:
