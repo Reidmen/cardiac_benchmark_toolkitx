@@ -5,13 +5,22 @@ as well as the fibers in the cardiac mechanics benchmark using [dolfinx](https:/
 
 ## Installation
 
+This library requires `FEniCS (dolfinx)` already installed in your system.
+If `dolfinx` is not installed in your system, use **Docker** with the provided image in folder `docker`.
+
+### Using Pip
+Execute the following command in your local session, it will install the required dependencies:
+
+```shell
+pip3 install .
+```
+
+### Using Docker
 **Docker** (Recommended) Run the following command to start a container with all the required dependencies:
 
 ```shell
-docker run --name dolfinx-stable -v $(pwd):/home/shared -w /home/shared -ti reidmen/dolfinx-nightly:91f01fd
+docker run --name dolfinx-stable -v $(pwd):/home/shared -w /home/shared -ti ghcr.io/fenics/dolfinx/dolfinx:nightly
 ```
-
-*The image `reidmen/dolfinx-nightly:91f01fd` is a frozen image from the `doflinx:nightly`*
 
 In order to enter the shell, use:
 
@@ -19,11 +28,14 @@ In order to enter the shell, use:
 docker exec -ti dolfin-stable /bin/bash -l
 ```
 
+
 ## Quickstart
-This file requires `PetscBinaryIO`, the module can be loaded using:
+
+Saving binary solutions require `PetscBinaryIO`, the module can be loaded using:
 ```shell
 export PYTHONPATH=$PYTHONPATH:/usr/local/petsc/lib/petsc/bin/
 ```
+if `PETSc` was installed in `/usr/local/` (e.g. in the case of the `docker` image).
 
 Given your tagged mesh located in `./meshes/ellipsoid.xdmf`, you can create the fibers as follows:
 

@@ -2,11 +2,13 @@
 FROM ghcr.io/fenics/dolfinx:nightly 
 
 # We set the working directory to install docker dependencies
-WORKDIR /tmp/
+WORKDIR /cardiac_benchmark_toolkitx
 
 # Install the Python-module
-COPY . /tmp
+COPY . /cardiac_benchmark_toolkitx
+RUN chmod +x .
 RUN python3 -m pip install --no-cache-dir .
+RUN export PYTHONPATH=$PYTHONPATH:/usr/local/petsc/lib/petsc/bin/
 
-# We remove the contents of the temporary directory to minimize the size of the image
-RUN rm -rf /tmp
+ENV SHELL /bin/bash
+ENTRYPOINT ["python3", "cardiac_benchmark_toolkitx/fiber_generation.py", "./meshes/ellipsoid0.005.xdmf"]
