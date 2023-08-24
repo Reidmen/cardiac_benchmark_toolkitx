@@ -5,6 +5,8 @@
 This repository contains minimal set of scripts that allow you to reproduce the mesh
 as well as the fibers in the cardiac mechanics benchmark using [dolfinx](https://github.com/FEniCS/dolfinx).
 
+![fibers](figs/fiber_and_sheet_directions.png)
+
 ## Installation
 
 This library requires `FEniCS` already installed in your system.
@@ -56,6 +58,9 @@ cardiac_benchmark_toolkit/mesh_generation.py -size 0.007
 
 It will create an ellipsoid mesh with characteristic element size of `0.007 [m]`. You can use it in conjuntion with the
 `ellipsoid_fiber_generation` to create the fiber directions for your specific simulation (and benchmark).
+
+Example cases at different element sizes can be seen below:
+![comparison](figs/comparison_meshes.png)
 
 ### Fiber Generation
 
