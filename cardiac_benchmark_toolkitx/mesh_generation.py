@@ -143,6 +143,8 @@ def ellipsoid_mesh(
         Physical Point("EPIPT") = {{ apex_epi }};
     """
 
+    Path(path).mkdir(exist_ok=True, parents=True)
+
     geofile = Path(path).joinpath(f"ellipsoid_{hc}.geo")
     outfile = Path(path).joinpath(f"ellipsoid_{hc}.msh")
     with geofile.open("w") as f:
@@ -153,7 +155,6 @@ def ellipsoid_mesh(
     mesh = meshio.read(str(outfile))
 
     xdmf_path = Path(path)
-    xdmf_path.mkdir(exist_ok=True, parents=True)
     pth_tmp_msh = xdmf_path.joinpath("ellipsoid_meshio.xdmf")
     pth_tmp_bnd = xdmf_path.joinpath("ellipsoid_meshio_bound.xdmf")
 

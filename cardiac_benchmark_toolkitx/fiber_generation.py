@@ -74,7 +74,7 @@ def read_mesh(mesh_file: os.PathLike[str] | str) -> tuple[Mesh, MeshTags]:
 def transmural_distance_problem(
     mesh: Mesh, bnds: MeshTags, degree: int
 ) -> fem.Function:
-    T = fem.FunctionSpace(mesh, ("CG", degree))
+    T = fem.functionspace(mesh, ("CG", degree))
     u, v = ufl.TrialFunction(T), ufl.TestFunction(T)
     lhs = ufl.dot(ufl.grad(u), ufl.grad(v)) * ufl.dx
     rhs = v * fem.Constant(mesh, PETSc.ScalarType(0)) * ufl.dx
@@ -258,7 +258,8 @@ def build_directions(
     degree: int,
 ) -> FiberDirections:
 
-    fibers_space = fem.VectorFunctionSpace(mesh, ("CG", degree))
+    ndim = mesh.topology.dim
+    fibers_space = fem.functionspace(mesh, ("CG", degree, (ndim,)))
 
     print("computing fiber direction")
     fiber_direction, fiber_array = compute_fiber_direction(
